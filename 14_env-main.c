@@ -1,18 +1,33 @@
 #include "main.h"
 
 /**
- * main - prints the environment
+ * main - stat example
  *
  * Return: Always 0.
  */
-int main(int ac, char **av, char **env)
+
+int main(int ac, char **av)
 {
     unsigned int i;
+    struct stat st;
 
-    i = 0;
-    while (env[i] != NULL)
+    if (ac < 2)
     {
-        printf("%s\n", env[i]);
+        printf("Usage: %s path_to_file ...\n", av[0]);
+        return (1);
+    }
+    i = 1;
+    while (av[i])
+    {
+        printf("%s:", av[i]);
+        if (stat(av[i], &st) == 0)
+        {
+            printf(" FOUND\n");
+        }
+        else
+        {
+            printf(" NOT FOUND\n");
+        }
         i++;
     }
     return (0);
