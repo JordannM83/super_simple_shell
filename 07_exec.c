@@ -1,7 +1,19 @@
 #include "main.h"
 
-// 07_exec.c
-// ...code à compléter...
-#include "main.h"
+/**
+ * main - execve example
+ *
+ * Return: Always 0.
+ */
+int main(void)
+{
+    char *argv[] = {"/bin/ls", "-l", "/home/jordann/super_simple_shell", NULL};
 
-// ...code à compléter...
+    printf("Before execve\n");
+    if (execve(argv[0], argv, NULL) == -1)
+    {
+        perror("Error:");
+    }
+    printf("After execve\n");
+    return (0);
+}

@@ -9,4 +9,6 @@
 #include <string.h>
 #include <sys/stat.h>
 
+char **split_string(char *str);
+
 #endif /* MAIN_H */

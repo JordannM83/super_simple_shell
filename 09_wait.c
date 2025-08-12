@@ -1,7 +1,30 @@
 #include "main.h"
 
-// 09_wait.c
-// ...code à compléter...
-#include "main.h"
+/**
+ * main - fork & wait example
+ *
+ * Return: Always 0.
+ */
+int main(void)
+{
+    pid_t child_pid;
+    int status;
 
-// ...code à compléter...
+    child_pid = fork();
+    if (child_pid == -1)
+    {
+        perror("Error:");
+        return (1);
+    }
+    if (child_pid == 0)
+    {
+        printf("Wait for me, wait for me\n");
+        sleep(3);
+    }
+    else
+    {
+        wait(&status);
+        printf("Oh, it's all better now\n");
+    }
+    return (0);
+}

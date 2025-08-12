@@ -1,13 +1,27 @@
 #include "main.h"
 
-// 05_prompt.c
-// ...code à compléter...
-
 int main(void)
 {
-	while(1)
+	char *line = NULL;
+	size_t len = 0;
+	ssize_t nread;
+	while (1)
 	{
-		printf("$");
-		
+		printf("$ ");
+		nread = getline(&line, &len, stdin);
+		if (nread == -1) {
+			break; // EOF or error
+		}
+		printf("%s", line);
+		char **words = split_string(line);
+		if (words) {
+			for (int i = 0; words[i]; i++) {
+				printf("word[%d]: %s\n", i, words[i]);
+				free(words[i]);
+			}
+			free(words);
+		}
 	}
+	free(line);
+	return 0;
 }
